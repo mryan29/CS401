@@ -131,7 +131,28 @@ exists and is equal to some number c > 0. Then f(n) = &Theta;(g(n))
 ## Basic Overview
 
 
+
+## BFS
+
+
+## DFS
+explores G by going as deeply as possible and only retreating when necessary
+
+## Representing graphs
+
+
+
+
+
+# Topics:
+- analysis of run time
+- graphs
+- greedy algos
+- divide and conquer
+
 > Data Structures in Ch 2
 > Actual algorithms
+> Sort run times/complexities by worse/better
+> What is (<sup>n</sup> <sub>2</sub>) where n is over 2
 
 
