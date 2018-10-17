@@ -142,6 +142,39 @@ explores G by going as deeply as possible and only retreating when necessary
 
 
 
+# 4. Greedy Algorithms
+## Interval Scheduling
+Possible rules for selecting which to schedule:
+1. which starts the earliest s(i)
+2. which requires the smallest interval of time f(i) - s(i)
+3. which has the fewest number of noncompatible requests/conflicts
+4. which finishes first f(i) --> optimal
+
+To prove:
+- |A| = |O| aka show A contains the same number of intervals as O and is therefore the optimal solution
+- for each r>=1, the r<sup>th</sup> accepted request in A's schedule finishes no later than the r<sup>th</sup> request in the optimal schedule
+- proof by induction:
+  - r=1 clearly true bc we pick request i w/ minimum finish time
+  - let r>1, for all r<= k, we have f(i<sub>r</sub>) <= f(j<sub>r</sub>)
+  - induction hypothesis: the statement is true for r-1 and we will try to prove it for r
+> study this more
+
+## Interval Partitioning
+goal: schedule all requests using as few resources as possible
+i.e. schedule all courses using as few classrooms as possible
+- number of required resources >= depth of the set of intervals
+
+## Minimize Lateness
+- resource available to begin at time s with deadline d<sub>i</sub>, requiring contiguous time interval of length t<sub>i</sub>, allowing certain requests run late
+- algo must determine start/finish time for each interval
+- late: request misses deadline f(i) > d<sub>i</sub>, where lateness is l<sub>i</sub> = f(i) - d<sub>i</sub> and l<sub>i</sub> = 0 if not late
+- goal: schedule all requests, nonoverlapping, minimize maximum lateness L = max<sub>i</sub> l <sub>i</sub>, single machine
+
+possible approaches:
+1. schedule by increasing length
+2. schedule by minimal slack time d<sub>i</sub> - t<sub>i</sub>
+3. schedule by increasing order of deadlines d<sub>i</sub> --> optimal
+
 
 
 # Topics:
@@ -154,5 +187,6 @@ explores G by going as deeply as possible and only retreating when necessary
 > Actual algorithms
 > Sort run times/complexities by worse/better
 > What is (<sup>n</sup> <sub>2</sub>) where n is over 2
+> study proofs by induction
 
 
