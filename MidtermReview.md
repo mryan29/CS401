@@ -175,6 +175,63 @@ possible approaches:
 2. schedule by minimal slack time d<sub>i</sub> - t<sub>i</sub>
 3. schedule by increasing order of deadlines d<sub>i</sub> --> optimal
 
+## Optimal Caching
+- issue: deciding which pieces of data to have close at hand (access quickly) of the large amount of data it takes a long time to access
+- parameters:
+  - set U of n pieces of data in main memor
+  - cache can hold k < n pieces of data
+  - cache initially holds some set of k items
+  - sequence of data items D = d<sub>1</sub>,...,d<sub>m</sub> drawn from U is sequence of memory references to process
+  - must decide at all times which k items to keep in the cache, which to evict jf already full (cache miss) - eviction schedule
+- solution:
+  - Farthest-in-Future Algorithm:
+  ```
+  When di needs to be brought into the cache,
+    evict the item that is needed the farthest into the future
+  ```
+- terms:
+  - reduced schedule: S<sub>bar</sub> brings in at most as many items as the schedule S
+  - locality of reference: programs keep accessing things they have been accessing
+  - optimal: incures no more misses than any other schedule
+
+## 4.4 Shortest Paths in a Graph
+problem: given nodes u and v, what is the shortest u-v path? or given start node s, shortest path from s to each other node?
+
+parameters:
+- given directed graph G = (V,E) w/ start node s (or undirected graph w/ two directed edges (u,v) and (v,u))
+- assume s has a path to every other node in G
+- each edge e has length l<sub>e</sub> >=0, and length of P denoted l(P)= sum of lengths of all edges in P
+
+solution:
+- Dijkstra's Algorithm (G,l)
+  ```
+  Let S be the set of explored nodes
+    For each u∈S, we store a distsnce d(u) 
+  Initially S = {s} and d(s) = 0
+  While S != V
+    Select a node v !∈ S with at least one edge from S for which
+      d’(v) = min<sub>e=(u,v):u∈S</sub> d(u) + l<sub>e</sub> is as small as possible 
+    Add v to S and define d(v)=d’(v)
+  EndWhile
+  ```
+  
+proof:
+- show paths P<sub>u</sub> are shortest paths
+- allow set S where for each u ∈ S, the path P<sub>u</sub> is a shortest s-u path
+- induction
+- base case: |S| = 1
+- induction hypothesis: suppose the claim holds when |S| = k for some k>=1
+- suppose S grows to size k+1 by adding node v, with (u,v) as our final edge on our s-v path P<sub>v</sub>
+- by induction hypothesis, P<sub>u</sub> is shortest s-u path for each u ∈ S
+> include more proof
+
+run time: O(m log n)
+
+## 4.5 Minimum Spanning Tree
+Problem:
+- given set of locations V = {v<sub>1</sub>1,...,v<sub>n</sub>}
+- connect all nodes as cheaply as possible
+
 
 
 # Topics:
