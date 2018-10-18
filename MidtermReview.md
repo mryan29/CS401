@@ -230,8 +230,75 @@ run time: O(m log n)
 ## 4.5 Minimum Spanning Tree
 Problem:
 - given set of locations V = {v<sub>1</sub>1,...,v<sub>n</sub>}
-- connect all nodes as cheaply as possible
+- connect all nodes, minimize cost 
+- cost c(v<sub>i</sub>,v<sub>j</sub>) = c<sub>e</sub> for each edge e = (v<sub>i</sub>,v<sub>j</sub>)
 
+Parameters:
+- assume G connected
+- T = minimum cost solution, so (V,T) is a tree (minimum spanning tree)
+
+Solution:
+1. Kruskal's Algorithm
+  a. start w/o any edegs
+  b. successively insert edges from E in order of increasing cost, so long as e does not create a cycle when added
+  c. if it would create a cycle, discard e and continue
+2. Prim's Algorithm (Using Djikstra)
+  a. start w/ root node s
+  b. add node that can be attached as cheaply as possibly to partial tree
+3. Backwards Kruskal's (Reverse-Delete Algorithm)
+  a. start with full graph
+  b. beginning w/ most expensive edge e, delete it as long as would not disconnect current graph
+  
+> Proof
+
+# 5. Divide and Conquer
+break input into parts, solve parts recursively, combine into overall solution
+
+## 5.1 Mergesort
+
+## 5.3 Counting Inversions
+used in: rankings
+- given: n numbers
+- want a measure for how far the list is from being in ascending order
+- solution: count number of inversions
+- inversions: two indices i<j form an inversion if a<sub>i</sub> > a<sub>j</sub> aka if they're out of order
+
+solution:
+```
+Merge-and-Count(A,B)
+
+Maintain a Current pointer into each list, initialized to point to the front elements
+Maintain a variable Count for the number of inversions, initialized to 0
+While both lists are nonempty:
+  Let ai and bj the elements pointed to by the Current pointer 
+  Append the smaller of these two to the output list
+  If b<sub>j</sub> is the smaller element then
+    Increment Count by the number of elements remaining in A
+  Endif
+  Advance the Current pointer in the list from which the smaller element was selected. 
+EndWhile
+Once one list is empty, append the remainder of the other list to the output
+Return Count and the merged list
+```
+run time: O(n)
+
+Then extended to:
+```
+Sort-and-Count (L)
+
+If the list has one element then
+  there are no inversions 
+Else
+  Divide the list into two halves:
+    A contains the first [rt/2] elements
+    B contains the remaining [n/2J elements
+  (rA, A) = Sort-and-Count (A) 
+  (rB, B) = Sort-and-Count (B) 
+  (r, L) = Merge-and-Count (A, B)
+Endif
+Return r=rA+rB+r, and the sorted list L
+```
+run time: O(n log n)
 
 
 # Topics:
@@ -245,5 +312,6 @@ Problem:
 > Sort run times/complexities by worse/better
 > What is (<sup>n</sup> <sub>2</sub>) where n is over 2
 > study proofs by induction
+> what is a minimum spanning tree
 
 
